@@ -1,0 +1,65 @@
+#coding=utf-8
+# path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+samples: config/samples.tsv
+# path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2,
+# strandedness). Units are technical replicates (e.g. lanes, or resequencing of the
+# same biological sample).If the column "strandedness" is present (which is optional),
+# can be empty or has one of these values: none, yes or reverse. none is for unstranded
+# protocols, yes an reverse follow the nomenclature used in `htseq-count --reverse`
+# which is referenced in STAR manual section 7, "Counting number of reads per gene".
+
+units: config/units.tsv
+
+trimming:
+  # skip trimming: false or true
+  skip: false
+  threads: 2
+  # adapter removal
+  adapter1: AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+  adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+  min_length: 35
+
+ref:
+  species: "homo_sapiens"
+  build: "GRCh38"
+  release: "100"
+
+pca:
+  labels:
+    # columns of sample sheet to use for PCA
+    - condition
+
+diffexp:
+  contrasts:
+   # contrasts for the deseq2 results method
+   # write down EFFECT_vs_CONTROL:
+   #  - FULLNAME_CONTROL
+   #  - FULLNAME_EFFECT
+    cA375.IZI50_vs_cA375:
+      - cA375-IZI50
+      - cA375
+    cWM1346.IZI50_vs_cWM1346:
+      - cWM1346-IZI50
+      - cWM1346
+    pA375.IZI50_vs_pA375:
+      - pA375-IZI50
+      - pA375
+    pWM1346.IZI50_vs_pWM1346:
+      - pWM1346-IZI50
+      - pWM1346
+
+
+params:
+  star: " --twopassMode Basic --outSAMtype BAM SortedByCoordinate
+  --limitOutSJcollapsed 1000000
+  --limitSjdbInsertNsj 1000000
+  --outFilterMultimapNmax 100
+  --outFilterMismatchNmax 33
+  --outFilterMismatchNoverLmax 0.3
+  --seedSearchStartLmax 12 --alignSJoverhangMin 15
+  --alignEndsType Local --outFilterMatchNminOverLread 0
+  --outFilterScoreMinOverLread 0.3
+  --winAnchorMultimapNmax 50
+  --alignSJDBoverhangMin 3"
+  bowtie_path: "/usr/local/bin/"
+  db_bowtie_path: "/scratch/users/aginolhac/FastQ_Screen_Genomes/"
