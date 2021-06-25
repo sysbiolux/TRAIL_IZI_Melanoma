@@ -56,3 +56,26 @@ Main output is the `DESeqDataSet` object from [`DESeq2`](https://bioconductor.or
 ### Differential gene analysis and plots
 
 See the file `TRAIL_IZI.Rmd` , routines are loaded from `R/utils.R`
+
+### Tools used
+
+|   software and algorithms        |    			source           |    			product number/identifier       |
+|:--------------------------------:|:-------------------------:|:----------------------------------------:|
+|        			AdapterRemoval       |    			https://github.com/MikkelSchubert/adapterremoval  |  v2.3.1     |
+|     			apeglm                 |     			R bioconductor                    |           			v1.10.0    |
+|       			ComplexHeatmap       |     			https://github.com/jokergoo/ComplexHeatmaps    |    v2.7.8.1000|
+|    			DESeq2                    |       			R bioconductor                    |         	v1.128.1      |
+|   			FALCON             		   |   			De Landtsheer et al. 2017, https://github.com/sysbiolux/FALCON>  | |
+|     			GeneWalk               |  Ietswaart et al. 2021, https://churchman.med.harvard.edu/genewalk    | 	v1.5.1   |
+|  		ggplot2                  |        	R CRAN |			v3.3.2 	|  
+|  			ggforce                |         	R CRAN | 		v0.3.3      |
+|  			multiqc                |  https://multiqc.info/    | 		v1.9      |
+|  			python                |  https://python.org/    | 		v3.8.2      |
+|		R Project for Statistical Computing |   		  https://www.r-project.org   |    v4.0.0 | 
+|   			RStudio            |    	https://www.rstudio.com/     | v1.0.143   |  
+|   Rsubread                 | R bioconductor | v2.2.2  |
+| 			SAMtools             | https://www.htslib.org   |   v1.10      |
+|		Snakemake                |   https://snakemake.github.io  |  v5.20.1    |
+|    STAR                    |  https://github.com/alexdobin/STAR | v2.7.4a |
+|	Tidyverse                  | R CRAN, http://tidyverse.org/ |  v1.1.1   |
+
