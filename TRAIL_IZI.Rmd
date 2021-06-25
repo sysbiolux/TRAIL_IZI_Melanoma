@@ -1,0 +1,72 @@
+---
+title: "TRAIL IZI Melanoma"
+author: "A. Ginolhac"
+date: "2021-06-21"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(DESeq2)
+library(vroom)
+source("R/utils.R")
+```
+
+
+## Summary statistics
+
+Supplementary table XXX: Summary statistics of the sequencing reads and downstream analyses: trimming, mapping and feature assignments
+
+```{r}
+samples <- vroom("config/samples.tsv", show_col_types = FALSE)
+```
+- Adapter Removal
+
+```{r paged.print=TRUE}
+ar <- vroom("multiqc_report_data/multiqc_adapter_removal.txt", show_col_types = FALSE) %>% 
+  select(Sample, reads_total, reads_retained = retained) %>% 
+  mutate(sample = str_extract(Sample, "^[^\\.]+")) %>% 
+  left_join(samples) %>% 
+  select(-Sample)
+```
+
+- STAR
+
+```{r}
+star <- vroom("multiqc_report_data/multiqc_star.txt", show_col_types = FALSE) %>% 
+  select(Sample, reads_retained = total_reads, avg_input_read_length, uniquely_mapped, uniquely_mapped_percent) %>% 
+  mutate(sample = Sample) %>% 
+  left_join(samples) %>% 
+  right_join(ar)
+```
+
+- featureCounts
+
+```{r}
+vroom("multiqc_report_data/multiqc_featureCounts.txt", show_col_types = FALSE) %>% 
+  select(Sample, Assigned) %>% 
+  mutate(Sample = str_extract(Sample, "\\d+-\\d")) %>% 
+  right_join(star) %>% 
+  select(Sample, condition, reads_total, reads_retained, avg_input_read_length,
+         uniquely_mapped, uniquely_mapped_percent, assigned = Assigned) %>% 
+  mutate(assigned_percent = assigned / uniquely_mapped * 100)
+```
+
+
+Summary statistics of the sequencing reads and downstream analyses: trimming, mapping and feature assignments
+
+reads_total: number of raw single-end reads produced by the NextSeq500 machine
+reads_retained: number of single-end reads after trimming of the raw reads (i.e trimmed reads)
+avg_input_read_length: average length of trimmed single-end reads
+uniquely_mapped: number of trimmed reads mapped uniquely by the STAR mapper
+uniquely_mapped_percent: % of reads mapped uniquely by the STAR mapper from trimmed reads 
+assigned: number of uniquely mapped reads assign to a gene feature by featureCounts (RSubread)
+assigned_percent: % of  mapped reads assign to a gene feature from uniquely mapped reads
+
+
+
+- Fig 4A. Vulcano plots: scripts
+- Figs 4C/5A/5B/6D: rlog counts: Scripts and results table
+- Supplementals. DESeq2 stats (logFC, adj pvalue) for selected genes of Fig 4C/5B/6D, i.e. supp tables S2/S4/S5.: Scripts
+Fig 4B. GeneWalk: All results (index file, tables)

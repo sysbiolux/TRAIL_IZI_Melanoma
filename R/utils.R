@@ -1,3 +1,6 @@
+# AurÃ©ien Ginolhac DLSM, University of Luxembourg
+# 2020 MIT License.
+
 subset_dds <- function(.data, .cell = NULL) {
   stopifnot(!is.null(.cell))
   pca_df_meta %>%
