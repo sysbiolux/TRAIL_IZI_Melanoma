@@ -10,7 +10,7 @@ Experimenter: Sebastian Schindler (Dresden)
 
 Sequencing on total RNA: Rashi Halder (Luxembourg)
 
-24 FASTQ generated (deposited in ArrayExpress XXX)
+24 FASTQ generated (deposited in [ArrayExpress](https://www.ebi.ac.uk/arrayexpress/) E-MTAB-10669)
 
 ```{bash}
 10-1-Lasse_S10_R1_001.fastq.gz
@@ -39,14 +39,20 @@ Sequencing on total RNA: Rashi Halder (Luxembourg)
 9-3-Lasse_S15_R1_001.fastq.gz
 ```
 
-## Snakemake
+### Snakemake
 
 The quality controls, read trimming, feature counting were performed using [Snakemake](https://snakemake.github.io/) and the tailor-made [RNA-seq template](https://git-r3lab.uni.lu/aurelien.ginolhac/snakemake-rna-seq/-/tree/master).
 
 The 3 config files are provided in the `config` folder:
 
 -   `config.yaml` main parameters
-
 -   `samples.tsv` sample annotations
-
 -   `units.tsv` link samples and FASTQ files
+
+#### Outputs
+
+Main output is the `DESeqDataSet` object from [`DESeq2`](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) saved a binary file \`deseq2/all.rds\` after successful completion of the `snakemake` pipeline.
+
+### Differential gene analysis and plots
+
+See the file `TRAIL_IZI.Rmd` , routines are loaded from `R/utils.R`
