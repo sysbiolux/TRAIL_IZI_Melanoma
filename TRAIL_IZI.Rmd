@@ -262,7 +262,34 @@ The object `m_sd` was used to plot with GraphPad Prism the figure 4C, 5B, 6D.
 ### GeneWalk
 
 
-Fig 4B. GeneWalk: All results (index file, tables)
+Fig 4B, plotting code:
+
+```{r, fig.width=10, fig.height=6}
+vroom::vroom("genewalk_scatterplots.csv",
+             col_types = cols()) %>% 
+  ggplot(aes(x = go_con, y = frac_rel_go, size = gene_con, colour = frac_rel_go)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_size_area() +
+  scale_color_viridis_c(option = "C") +
+  geom_text(data = function(x) filter(x, gene_con > 30, go_con > 30),
+            aes(label = hgnc_symbol), colour = "black", size = 4, nudge_x = .08) +
+  geom_hline(yintercept = 0.5, linetype = "dashed", colour = "grey50") +
+  geom_vline(xintercept = 30, linetype = "dashed", colour = "grey50") +
+  annotation_logticks(sides = "b") +
+  theme_light(16, base_family = "RobotoCondensed") +
+  labs(x = "Number of GO annotations (per gene)",
+       y = "Fraction of relevant GO terms (per gene)",
+       title = "Moonlighting genes",
+       size = "Gene connections",
+       colour = "Fraction of relevant GO terms (per gene)") +
+  theme(legend.position = "top") +
+  guides(color = guide_colorbar(title.position = "top", title.hjust = .5,
+                                barwidth = unit(20, "lines"), barheight = unit(.5, "lines")),
+         size = guide_legend(title.position = "top", title.hjust = .5)) -> moon
+moon
+```
+
 
 
 
