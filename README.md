@@ -45,9 +45,9 @@ The quality controls, read trimming, feature counting were performed using [Snak
 !
 The 3 config files are provided in the `config` folder:
 
--   `config.yaml` main parameters
--   `samples.tsv` sample annotations
--   `units.tsv` link samples and FASTQ files
+-   [`config.yaml`](config/config.yaml) main parameters
+-   [`samples.tsv`](config/samples.tsv) sample annotations
+-   [`units.tsv`](config/units.tsv) link samples and FASTQ files
 
 #### Outputs
 
@@ -55,14 +55,14 @@ Main output is the `DESeqDataSet` object from [`DESeq2`](https://bioconductor.or
 
 ### Differential gene analysis and plots
 
-See the file `TRAIL_IZI.Rmd` , routines are loaded from `R/utils.R`
+See the file [`TRAIL_IZI.Rmd`](TRAIL_IZI.Rmd), routines are loaded from [`R/utils.R`](R/utils.R)
 
 
 ### GeneWalk
 
-Performed on 1,248 genes using the BASH script `run_genewalk.sh` on the https://hpc.uni.lu `iris` machine.
+Performed on 1,248 genes using the BASH script [`run_genewalk.sh`](run_genewalk.sh) on the https://hpc.uni.lu `iris` machine.
 
-The input file `same_pdirection.txt` is also part of this repository.
+The input file [`same_pdirection.txt`](same_pdirection.txt) is also part of this repository.
 
 ### Tools used
 
@@ -76,7 +76,7 @@ Varrette S., Bouvry P., Cartiaux H. and Georgatos F. Management of an Academic H
 |     			apeglm                 |     			R bioconductor                    |           			v1.10.0    |
 |       			ComplexHeatmap       |     			https://github.com/jokergoo/ComplexHeatmaps    |    v2.7.8.1000|
 |    			DESeq2                    |       			R bioconductor                    |         	v1.128.1      |
-|   			FALCON             		   |   			De Landtsheer et al. 2017, https://github.com/sysbiolux/FALCON>  | |
+|   			FALCON             		   |   			De Landtsheer et al. 2017, https://github.com/sysbiolux/FALCON  | |
 |     			GeneWalk               |  Ietswaart et al. 2021, https://churchman.med.harvard.edu/genewalk    | 	v1.5.1   |
 |  		ggplot2                  |        	R CRAN |			v3.3.2 	|  
 |  		ggVennDiagram            |        	R CRAN |			v1.1 	|  
