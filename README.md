@@ -42,7 +42,7 @@ Sequencing on total RNA: Rashi Halder (Luxembourg)
 ### Snakemake
 
 The quality controls, read trimming, feature counting were performed using [Snakemake](https://snakemake.github.io/) and the tailor-made [RNA-seq template](https://git-r3lab.uni.lu/aurelien.ginolhac/snakemake-rna-seq/-/tree/master).
-
+!
 The 3 config files are provided in the `config` folder:
 
 -   `config.yaml` main parameters
