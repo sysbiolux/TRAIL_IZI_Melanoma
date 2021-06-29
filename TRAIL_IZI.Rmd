@@ -69,9 +69,7 @@ Summary statistics of the sequencing reads and downstream analyses: trimming, ma
 **assigned_percent**: % of  mapped reads assign to a gene feature from uniquely mapped reads
 
 
-
 ## Differential gene expression
-
 
 ### PCA
 
@@ -107,13 +105,12 @@ pca_df %>%
 ```{r}
 # normalization and preprocessing
 dds_a375 <- subset_dds(dds, pca_df_meta, fc, .cell = "A375")
-res_a375_izip <- sub_results(dds_a375, .coef = "condition_pA375_IZI50_vs_pA375")
-# relevel to get the parental as first level
-dds_a375$condition <- relevel(dds_a375$condition, "cA375")
-# redo the test as https://support.bioconductor.org/p/123247/
-dds_a375 <- nbinomWaldTest(dds_a375, quiet = TRUE)
-# FIXME which coef are kept in the manuscript!?
+# 2 contrasts for the volcanoes
 res_a375_izic <- sub_results(dds_a375, .coef = "condition_cA375_IZI50_vs_cA375")
+res_a375_izip <- sub_results(dds_a375, .coef = "condition_pA375_IZI50_vs_pA375")
+# last 2 for the supp tables
+res_a375cp <- sub_results(dds_a375, .coef = "condition_cA375_vs_pA375")
+res_a375_izicp <- sub_results(dds_a375, .coef = "condition_cA375_IZI50_vs_pA375_IZI50")
 # merge all results in one tibble
 bind_rows(cIZI50_vs_c = rownames_to_column(as.data.frame(res_a375_izic), var = "gene_id"),
           pIZI50_vs_p = rownames_to_column(as.data.frame(res_a375_izip), var = "gene_id"), 
@@ -124,13 +121,12 @@ two_volcanoes(res_tib_a375_izi, .title = "A375")
 
 # normalization and preprocessing
 dds_WM1346 <- subset_dds(dds, pca_df_meta, fc, .cell = "WM1346")
-res_WM1346_izip <- sub_results(dds_WM1346, .coef = "condition_pWM1346_IZI50_vs_pWM1346")
-# relevel to get the parental as first level
-dds_WM1346$condition <- relevel(dds_WM1346$condition, "cWM1346")
-# redo the test as https://support.bioconductor.org/p/123247/
-dds_WM1346 <- nbinomWaldTest(dds_WM1346, quiet = TRUE)
-# FIXME which coef are kept in the manuscript!?
+# 2 contrasts for the volcanoes
 res_WM1346_izic <- sub_results(dds_WM1346, .coef = "condition_cWM1346_IZI50_vs_cWM1346")
+res_WM1346_izip <- sub_results(dds_WM1346, .coef = "condition_pWM1346_IZI50_vs_pWM1346")
+# last 2 for the supp tables
+res_WM1346cp <- sub_results(dds_WM1346, .coef = "condition_cWM1346_vs_pWM1346")
+res_WM1346_izicp <- sub_results(dds_WM1346, .coef = "condition_cWM1346_IZI50_vs_pWM1346_IZI50")
 # merge all results in one tibble
 bind_rows(cIZI50_vs_c = rownames_to_column(as.data.frame(res_WM1346_izic), var = "gene_id"),
           pIZI50_vs_p = rownames_to_column(as.data.frame(res_WM1346_izip), var = "gene_id"), 
@@ -142,7 +138,46 @@ two_volcanoes(res_tib_WM1346_izi, .title = "WM1346") +
   ylim(c(0, max(-log10(res_tib_a375_izi$padj), na.rm = TRUE)))
 ```
 
-- Table S2, S4, S5 are obtained for merging the 2 DESeq2 results that contains the 
+- Table S2, S4, S5 are obtained for merging the 2 DESeq2 results that contains the gene of interest
+
+```{r paged.print=FALSE}
+bind_rows(
+  mutate(res_tib_a375_izi, cell = "A375"),
+  bind_rows(c_vs_p = rownames_to_column(as.data.frame(res_a375cp), var = "gene_id"),
+            cIZI50_vs_pIZI50 = rownames_to_column(as.data.frame(res_a375_izicp), var = "gene_id"), 
+            .id = "contrast") %>% mutate(cell = "A375"),
+  mutate(res_tib_WM1346_izi, cell = "WM1346"),
+  bind_rows(c_vs_p = rownames_to_column(as.data.frame(res_WM1346cp), var = "gene_id"),
+            cIZI50_vs_pIZI50 = rownames_to_column(as.data.frame(res_WM1346_izicp), var = "gene_id"), 
+            .id = "contrast") %>% mutate(cell = "WM1346")) %>%
+  filter(gene_name %in% c("PTK2", "IQGAP1", "ITGAV", "PRKDC", "MET",
+                          "BAK", "BAX", "BBC3")) %>%
+  select(stimulation = contrast, log2FoldChange, padj, gene_name, cell) %>%
+  pivot_wider(id_cols = c(stimulation, gene_name),
+              names_from = cell,
+              values_from = c(log2FoldChange, padj)) %>%
+  arrange(gene_name, stimulation) %>%
+  select(stimulation, gene_name, log2FoldChange_A375, padj_A375,
+         log2FoldChange_WM1346, padj_WM1346)
+```
+
+which gives a table like this (first 10 lines displayed)
+
+```
+# A tibble: 28 x 6
+   stimulation      gene_name log2FoldChange_A375  padj_A375 log2FoldChange_WM1346 padj_WM1346
+   <chr>            <chr>                   <dbl>      <dbl>                 <dbl>       <dbl>
+ 1 c_vs_p           BAX                    0.331  0.160                    -0.125     0.532   
+ 2 cIZI50_vs_c      BAX                    0.122  0.377                     0.483     0.000409
+ 3 cIZI50_vs_pIZI50 BAX                    0.403  0.0566                   -0.0748    0.662   
+ 4 pIZI50_vs_p      BAX                    0.191  0.361                     0.430     0.000546
+ 5 c_vs_p           BBC3                   0.332  0.405                     0.0294    0.893   
+ 6 cIZI50_vs_c      BBC3                   0.0154 0.882                    -0.0745    0.309   
+ 7 cIZI50_vs_pIZI50 BBC3                   0.385  0.276                    -0.783     0.0663  
+ 8 pIZI50_vs_p      BBC3                   0.0366 0.908                     0.301     0.329   
+ 9 c_vs_p           IQGAP1                -0.467  0.00000432                0.106     0.592   
+10 cIZI50_vs_c      IQGAP1                 0.0594 0.615                    -0.227     0.0854 
+```
 
 ### Regularized log counts
 
@@ -224,9 +259,9 @@ ComplexHeatmap::draw(ht_nachbarn_mat)
 The object `m_sd` was used to plot with GraphPad Prism the figure 4C, 5B, 6D.
 
 
+### GeneWalk
 
 
-- Supplementals. DESeq2 stats (logFC, adj pvalue)  i.e. supp tables S2/S4/S5.: Scripts
 Fig 4B. GeneWalk: All results (index file, tables)
 
 
