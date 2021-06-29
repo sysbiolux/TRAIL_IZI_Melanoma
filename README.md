@@ -42,7 +42,7 @@ Sequencing on total RNA: Rashi Halder (Luxembourg)
 ### Snakemake
 
 The quality controls, read trimming, feature counting were performed using [Snakemake](https://snakemake.github.io/) and the tailor-made [RNA-seq template](https://git-r3lab.uni.lu/aurelien.ginolhac/snakemake-rna-seq/-/tree/master).
-!
+
 The 3 config files are provided in the `config` folder:
 
 -   [`config.yaml`](config/config.yaml) main parameters
@@ -94,29 +94,29 @@ Varrette S., Bouvry P., Cartiaux H. and Georgatos F. Management of an Academic H
 
 <details><summary>Tools citation</summary>
 <p>
-  - Constantin Ahlmann-Eltze, Peter Hickey and Hervé Pagès (2021). MatrixGenerics: S4 Generic Summary Statistic Functions that Operate on Matrix-Like Objects. R package version 1.4.0. https://bioconductor.org/packages/MatrixGenerics
-  - Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensional genomic data. Bioinformatics.
-  - H. Pagès, M. Lawrence and P. Aboyoun (2021). S4Vectors: Foundation of vector-like and list-like containers in Bioconductor. R package version 0.30.0. https://bioconductor.org/packages/S4Vectors
-  - H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
-  - Hadley Wickham (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R package version 1.4.0. https://CRAN.R-project.org/package=stringr
-  - Hadley Wickham (2021). forcats: Tools for Working with Categorical Variables (Factors). R package version 0.5.1. https://CRAN.R-project.org/package=forcats
-  - Hadley Wickham (2021). tidyr: Tidy Messy Data. R package version 1.1.3. https://CRAN.R-project.org/package=tidyr
-  - Hadley Wickham and Jim Hester (2020). readr: Read Rectangular Text Data. R package version 1.4.0. https://CRAN.R-project.org/package=readr
-  - Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2021). dplyr: A Grammar of Data Manipulation. R package version 1.0.7. https://CRAN.R-project.org/package=dplyr
-  - Henrik Bengtsson (2021). matrixStats: Functions that Apply to Rows and Columns of Matrices (and to Vectors). R package version 0.59.0. https://CRAN.R-project.org/package=matrixStats
-  - Jim Hester and Hadley Wickham (2021). vroom: Read and Write Rectangular Text Data Quickly. R package version 1.5.1. https://CRAN.R-project.org/package=vroom
-  - Kamil Slowikowski (2021). ggrepel: Automatically Position Non-Overlapping Text Labels with 'ggplot2'. R package version 0.9.1. https://CRAN.R-project.org/package=ggrepel
-  - Kirill Müller and Hadley Wickham (2021). tibble: Simple Data Frames. R package version 3.1.2. https://CRAN.R-project.org/package=tibble
-  - Lawrence M, Huber W, Pag\`es H, Aboyoun P, Carlson M, et al. (2013) Software for Computing and Annotating Genomic Ranges. PLoS Comput Biol 9(8): e1003118. doi:10.1371/journal.pcbi.1003118
-  - Lawrence M, Huber W, Pag\`es H, Aboyoun P, Carlson M, et al. (2013) Software for Computing and Annotating Genomic Ranges. PLoS Comput Biol 9(8): e1003118. doi:10.1371/journal.pcbi.1003118
-  - Lionel Henry and Hadley Wickham (2020). purrr: Functional Programming Tools. R package version 0.3.4. https://CRAN.R-project.org/package=purrr
-  - Love, M.I., Huber, W., Anders, S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2 Genome Biology 15(12):550 (2014)
-  - Martin Morgan, Valerie Obenchain, Jim Hester and Hervé Pagès (2021). SummarizedExperiment: SummarizedExperiment container. R package version 1.22.0. https://bioconductor.org/packages/SummarizedExperiment
-  - Orchestrating high-throughput genomic analysis with Bioconductor. W. Huber, V.J. Carey, R. Gentleman, ..., M. Morgan Nature Methods, 2015:12, 115.
-  - Orchestrating high-throughput genomic analysis with Bioconductor. W. Huber, V.J. Carey, R. Gentleman, ..., M. Morgan Nature Methods, 2015:12, 115.
-  - R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
-  - Sonali Arora, Martin Morgan, Marc Carlson and H. Pagès (2021). GenomeInfoDb: Utilities for manipulating chromosome names, including modifying them to follow a particular naming style. R package version 1.28.0. https://bioconductor.org/packages/GenomeInfoDb
-  - Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+- Constantin Ahlmann-Eltze, Peter Hickey and Hervé Pagès (2021). MatrixGenerics: S4 Generic Smmary Statistic Functions that Operate on Matrix-Like Objects. R package version 1.4.0. htps://bioconductor.org/packages/MatrixGenerics
+- Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensional genomic dta. Bioinformatics.
+- H. Pagès, M. Lawrence and P. Aboyoun (2021). S4Vectors: Foundation of vector-like and list-like cntainers in Bioconductor. R package version 0.30.0. https://bioconductor.org/packages/S4Vectors
+- H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+- Hadley Wickham (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R pckage version 1.4.0. https://CRAN.R-project.org/package=stringr
+- Hadley Wickham (2021). forcats: Tools for Working with Categorical Variables (Factors). R pckage version 0.5.1. https://CRAN.R-project.org/package=forcats
+- Hadley Wickham (2021). tidyr: Tidy Messy Data. R package version 1.1.3. htps://CRAN.R-project.org/package=tidyr
+- Hadley Wickham and Jim Hester (2020). readr: Read Rectangular Text Data. R package version 14.0. https://CRAN.R-project.org/package=readr
+- Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2021). dplyr: A Grammar of Data Mnipulation. R package version 1.0.7. https://CRAN.R-project.org/package=dplyr
+- Henrik Bengtsson (2021). matrixStats: Functions that Apply to Rows and Columns of Matrices (and t Vectors). R package version 0.59.0. https://CRAN.R-project.org/package=matrixStats
+- Jim Hester and Hadley Wickham (2021). vroom: Read and Write Rectangular Text Data Quickly. R pckage version 1.5.1. https://CRAN.R-project.org/package=vroom
+- Kamil Slowikowski (2021). ggrepel: Automatically Position Non-Overlapping Text Labels with 'gplot2'. R package version 0.9.1. https://CRAN.R-project.org/package=ggrepel
+- Kirill Müller and Hadley Wickham (2021). tibble: Simple Data Frames. R package version 3.1.2. htps://CRAN.R-project.org/package=tibble
+- Lawrence M, Huber W, Pag`es H, Aboyoun P, Carlson M, et al. (2013) Software for Computing and Anotating Genomic Ranges. PLoS Comput Biol 9(8): e1003118. doi:10.1371/journal.pcbi.1003118
+- Lawrence M, Huber W, Pag`es H, Aboyoun P, Carlson M, et al. (2013) Software for Computing and Annotating Genomic Ranges. PLoS Comput Biol 9(8): e1003118. doi:10.1371/journal.pcbi.1003118
+- Lionel Henry and Hadley Wickham (2020). purrr: Functional Programming Tools. R package version 03.4. https://CRAN.R-project.org/package=purrr
+- Love, M.I., Huber, W., Anders, S. Moderated estimation of fold change and dispersion for RNA-seq dta with DESeq2 Genome Biology 15(12):550 (2014)
+- Martin Morgan, Valerie Obenchain, Jim Hester and Hervé Pagès (2021). SummarizedExperiment: SmmarizedExperiment container. R package version 1.22.0. htps://bioconductor.org/packages/SummarizedExperiment
+- Orchestrating high-throughput genomic analysis with Bioconductor. W. Huber, V.J. Carey, R. Gntleman, ..., M. Morgan Nature Methods, 2015:12, 115.
+- Orchestrating high-throughput genomic analysis with Bioconductor. W. Huber, V.J. Carey, R. Gntleman, ..., M. Morgan Nature Methods, 2015:12, 115.
+- R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Satistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+- Sonali Arora, Martin Morgan, Marc Carlson and H. Pagès (2021). GenomeInfoDb: Utilities for mnipulating chromosome names, including modifying them to follow a particular naming style. R pckage version 1.28.0. https://bioconductor.org/packages/GenomeInfoDb
+- Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
 
 </p>
 </details>
